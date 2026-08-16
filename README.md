@@ -1,4 +1,4 @@
-# URL Shortener — System Design Project
+# URL Shortener
 
 A production-minded URL shortener built as a learning-focused system design project using only free-tier friendly infrastructure.
 
