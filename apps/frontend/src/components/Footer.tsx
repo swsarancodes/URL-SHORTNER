@@ -35,13 +35,13 @@ export function Footer() {
         />
       </div>
 
-      <div className="mx-auto flex min-h-[80vh] max-w-[1400px] flex-col justify-between px-6 pt-16 pb-8 md:px-10 lg:px-16">
+      <div className="mx-auto flex min-h-[80vh] max-w-350 flex-col justify-between px-6 pt-16 pb-8 md:px-10 lg:px-16">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.9, ease: [0.16, 0.84, 0.24, 1] }}
-          className="display-sm max-w-[28rem] text-paper"
+          className="display-sm max-w-md text-paper"
         >
           one line of text.
           <br />

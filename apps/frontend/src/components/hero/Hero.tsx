@@ -56,12 +56,12 @@ export function Hero() {
         />
       </div>
 
-      <div className="mx-auto w-full max-w-[1400px] px-6 pt-14 pb-14 md:px-10 md:pb-16 lg:px-16 lg:pb-20">
+      <div className="mx-auto w-full max-w-350 px-6 pt-14 pb-14 md:px-10 md:pb-16 lg:px-16 lg:pb-20">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="max-w-[46rem]"
+          className="max-w-184"
         >
           <motion.p variants={item} className="label-mono text-paper/70">
             url shortener / routing infrastructure
@@ -71,7 +71,7 @@ export function Hero() {
             <br />
             keep the route.
           </motion.h1>
-          <motion.p variants={item} className="body-lg mt-7 max-w-[38rem] text-paper/90">
+          <motion.p variants={item} className="body-lg mt-7 max-w-152 text-paper/90">
             a short link is one line of text. behind it: a controlled gateway, health-aware routing,
             an indexed lookup and a redirect that gets out of the way in under 30ms.
           </motion.p>

@@ -16,7 +16,7 @@ export default defineConfig({
     tanstackStart({
       server: { entry: "server" },
     }),
-    nitro({ config: { preset: "node-server" } }),
+    nitro({ preset: "node-server" }),
     viteReact(),
   ],
 });
