@@ -6,7 +6,7 @@ A production-minded URL shortener built as a learning-focused system design proj
 
 | Layer | Technology |
 | --- | --- |
-| Frontend | React + Vite + TypeScript |
+| Frontend | React + TanStack Start + Vite + TypeScript (Bun runtime) |
 | API Gateway | FastAPI |
 | Backend | FastAPI |
 | Authentication | JWT access tokens + refresh tokens |
@@ -64,7 +64,7 @@ Vercel still provides the physical hosting, edge routing and serverless runtime.
 
 ## Local development
 
-Create the Vite frontend with the command documented in [docs/operations/01-deployment.md](docs/operations/01-deployment.md), install Python dependencies in the gateway and backend, configure `.env` files from their examples, then run the services locally.
+Install frontend dependencies with [Bun](https://bun.sh) (`cd apps/frontend && bun install && bun run dev`), install Python dependencies in the gateway and backend, configure `.env` files from their examples, then run the services locally.
 
 ## Documentation
 

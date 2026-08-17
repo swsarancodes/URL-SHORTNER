@@ -2,15 +2,15 @@
 
 ## Frontend
 
-The frontend is React + Vite + TypeScript.
-
-From the repository root, the intended scaffold command is:
+The frontend is React + TanStack Start + Vite + TypeScript, run with [Bun](https://bun.sh) as the only JavaScript runtime/package manager.
 
 ```bash
-npm create vite@latest apps/frontend -- --template react-ts
+cd apps/frontend
+bun install
+bun run dev
 ```
 
-Vite's production build outputs static assets, which can be deployed to Vercel.
+TanStack Start builds an SSR server bundle (via Nitro) rather than plain static assets, so deployment must target a Node-compatible Vercel runtime rather than a static-only Vercel project.
 
 ### Frontend environment
 
@@ -53,7 +53,7 @@ Use an appropriate SQLAlchemy driver and Neon-compatible connection configuratio
 Typical process:
 
 ```
-frontend: npm run dev
+frontend: bun run dev
  gateway: uvicorn app.main:app --port 8000
 backend1: uvicorn app.main:app --port 8001
 backend2: uvicorn app.main:app --port 8002
@@ -64,7 +64,7 @@ Docker Compose can replace the manual backend processes when testing load balanc
 
 ## CORS
 
-During local development allow the known Vite origin, normally `http://localhost:5173`. In deployed environments allow only the intended frontend origin(s).
+During local development allow the known Vite dev server origin, normally `http://localhost:3000`. In deployed environments allow only the intended frontend origin(s).
 
 ## Migration deployment
 

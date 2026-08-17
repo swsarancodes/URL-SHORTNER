@@ -1,0 +1,308 @@
+@import "tailwindcss" source(none);
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system: "route" — light-first, engineered, quietly technical.
+ * One accent: --signal. warning/failure are semantic exceptions, not brand colors.
+ */
+
+@theme inline {
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-graphite: var(--graphite);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--graphite);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--surface);
+  --color-warning: var(--warning);
+  --color-failure: var(--failure);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--secondary);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--graphite);
+  --color-primary: var(--graphite);
+  --color-primary-foreground: var(--surface);
+  --color-accent: var(--signal);
+  --color-accent-foreground: var(--surface);
+  --color-border: var(--hairline);
+  --color-input: var(--hairline);
+  --color-ring: var(--signal);
+  --color-destructive: var(--failure);
+  --color-ink: var(--ink);
+
+  --font-sans:
+    "Geist", "Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --ease-route: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-tool:
+    0 18px 50px rgba(23, 25, 28, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-panel: -24px 0 60px rgba(23, 25, 28, 0.08);
+}
+
+:root {
+  --radius: 12px;
+  --paper: #f5f7f8;
+  --surface: #ffffff;
+  --surface-secondary: #eef1f2;
+  --graphite: #17191c;
+  --ink: #101215;
+  --secondary: #62676f;
+  --muted: #9299a1;
+  --hairline: #dfe3e6;
+  --hairline-strong: #cbd1d5;
+  --signal: #287c6f;
+  --warning: #a07430;
+  --failure: #9d4b3f;
+
+  --background: var(--paper);
+  --foreground: var(--graphite);
+
+  /* interaction timing system */
+  --t-micro: 150ms;
+  --t-control: 210ms;
+  --t-panel: 320ms;
+  --t-page: 520ms;
+}
+
+@layer base {
+  * {
+    border-color: var(--hairline);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--signal) 22%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+}
+
+/* ---------- typography utilities ---------- */
+
+@utility display-xl {
+  font-size: clamp(2.75rem, 6.6vw, 5rem);
+  line-height: 0.94;
+  letter-spacing: -0.048em;
+  font-weight: 560;
+  text-wrap: balance;
+}
+
+@utility display-md {
+  font-size: clamp(1.875rem, 3.6vw, 2.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.038em;
+  font-weight: 550;
+}
+
+@utility display-sm {
+  font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 550;
+}
+
+@utility body-lg {
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--secondary);
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--muted);
+}
+
+@utility num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+@utility rule-fade {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--hairline) 12%,
+    var(--hairline) 88%,
+    transparent
+  );
+}
+
+@utility grid-texture {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--graphite) 3.5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--graphite) 3.5%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ---------- orchestrated entrance ---------- */
+
+@utility enter {
+  animation: enter-rise 620ms var(--ease-route) both;
+}
+
+@keyframes enter-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility reveal {
+  animation: enter-rise 380ms var(--ease-route) both;
+}
+
+@utility draw-v {
+  animation: draw-v 700ms var(--ease-route) both;
+  transform-origin: top center;
+}
+
+@keyframes draw-v {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@utility breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@utility packet-run {
+  animation: packet-run 1000ms cubic-bezier(0.4, 0.05, 0.25, 1) both;
+}
+
+@keyframes packet-run {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(var(--packet-distance, 100%), 0, 0);
+  }
+}
+
+/* ---------- digit roll (latency numbers) ---------- */
+
+@utility digit-roll {
+  animation: digit-roll 220ms var(--ease-route) both;
+}
+
+@keyframes digit-roll {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@utility digit-roll-out {
+  animation: digit-roll-out 220ms var(--ease-route) both;
+}
+
+@keyframes digit-roll-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* ---------- live rail row insertion ---------- */
+
+@utility rail-in {
+  animation: rail-in 320ms var(--ease-route) both;
+}
+
+@keyframes rail-in {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility panel-in {
+  animation: panel-in 320ms var(--ease-route) both;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* route trace: labels are unreadable when the svg is squeezed on phones */
+@media (max-width: 639px) {
+  .trace-label {
+    display: none;
+  }
+}
